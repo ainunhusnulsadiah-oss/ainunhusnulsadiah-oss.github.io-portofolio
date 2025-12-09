@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Web</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+     rel="stylesheet"
+         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+     crossorigin="anonymous">
+    <style>
+     body {
+       padding-top: 70px; /* atur sesuai tinggi navbar */
+     }
+     /* Card Seragam (Digunakan untuk Artikel, Riwayat Pendidikan, dan Keahlian) */
+     .card-uniform { /* Mengganti nama class untuk generalisasi */
+       border-radius: 20px;
+       overflow: hidden;
+       box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+     }
+
+     /* Card Khusus Artikel */
+     .card-article {
+       height: 100%; /* Diterapkan khusus untuk artikel agar tinggi kolom sama */
+       display: flex;
+       flex-direction: column;
+     }
+     .card-article .card-img-top {
+       height: 200px;
+       object-fit: cover;
+       border-top-left-radius: 20px;
+       border-top-right-radius: 20px;
+     }
+     .card-article .card-body {
+       padding: 1.2rem;
+       flex: 1 1 auto;
+       display: flex;
+       flex-direction: column;
+       justify-content: space-between;
+     }
+
+     /* Styling Kontak */
+     .contact-box {
+       width: 90%;
+       max-width: 800px;
+       margin: 60px auto;
+       padding: 40px 20px;
+       border: 1.5px solid #b5caff;
+       border-radius: 20px;
+       background-color: #fff;
+       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+       text-align: center;
+       font-family: Arial, sans-serif;
+     }
+
+     .contact-box h2 {
+       font-size: 20px;
+       margin-bottom: 8px;
+       color: #333;
+     }
+
+     .contact-box p {
+       font-size: 14px;
+       color: #666;
+       margin-bottom: 20px;
+     }
+
+     .social-buttons {
+       display: flex;
+       justify-content: center;
+       gap: 15px;
+       flex-wrap: wrap;
+     }
+
+     .social-buttons a {
+       padding: 10px 25px;
+       font-size: 14px;
+       font-weight: bold;
+       border: none;
+       border-radius: 5px;
+       color: white;
+       text-decoration: none;
+       transition: background-color 0.2s;
+     }
+
+     .whatsapp-button {
+       background-color: #25D366;
+     }
+
+     .whatsapp-button:hover {
+       background-color: #1ebe5d;
+     }
+
+     .instagram-button {
+       background-color: #cc4074;
+     }
+
+     .instagram-button:hover {
+       background-color: #c2245c;
+     }
+
+     .tiktok-button {
+       background-color: #010101;
+     }
+
+     .tiktok-button:hover {
+       background-color: #333;
+     }
+    </style>
+</head>
+<body>
+    <section>
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-lg fixed-top"
+     style="background: linear-gradient(90deg, #587ecb, #827a7f);">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">@Ainun</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#riwayat-pendidikan">Riwayat Pendidikan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#keahlian">Keahlian</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#artikel">Artikel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#hubungisaya">Hubungi Saya</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</section>
+
+
+    <section class="my-5">
+        <div class="container py-5">
+            <div class="card border-0 bg-light p-4 rounded-5">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Selamat datang di Personal Website</h5>
+                            <h1><b>Ainun</b> Husnul Sadiah</h1>
+                            <p class="mb-0">Siswa Jurusan Rekayasa Perangkat Lunak</p>
+                            <p>SMK Negeri 8 Jember</p>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="portofilio copy.png" class="img-fluid shadow-lg rounded-5" alt="Foto Profile">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="my-5">
+        <div class="container">
+            <div class="row d-flex align-items-stretch">
+                <div class="col-md-6" id="riwayat-pendidikan">
+                    <div class="card card-uniform h-100">
+                        <div class="card-body p-4">
+                            <h3 class="mb-4">Riwayat Pendidikan</h3>
+
+
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5>SMKN 8 Jember</h5>
+                                    <p>Jurusan Rekayasa Perangkat Lunak</p>
+                                    <small>2024 - sekarang</small>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5>SMPN 1 Bangsalsari</h5>
+                                    <small>2022 - 2024</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" id="keahlian">
+                    <div class="card card-uniform h-100">
+                        <div class="card-body p-4">
+                             <h3 class="mb-4">Keahlian</h3>
+                             <div class="card mb-3">
+                                <div class="card-body">
+                                     HTML
+                                </div>
+                             </div>
+                             <div class="card mb-3">
+                                <div class="card-body">
+                                     CSS
+                                </div>
+                             </div>
+                              <div class="card mb-3">
+                                <div class="card-body">
+                                     BASISDATA
+                                </div>
+                             </div>
+                             <div class="card mb-3">
+                                <div class="card-body">
+                                     DESAIN UI/UX
+                                </div>
+                             </div>
+                             <div class="card">
+                                <div class="card-body">
+                                     BOOTSTRAP
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>=
+
+    <section id="artikel">
+  <div class="container my-5">
+    <h2>Artikel Saya</h2>
+    <p class="text-muted">Cerita yang saya bagikan</p>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card card-uniform card-article mb-4 h-100"> <img src="https://images.unsplash.com/photo-1505685296765-3a2736de412f?w=600" class="card-img-top" alt="Artikel 1">
+          <div class="card-body">
+            <h6 class="card-title">Tips dan Trik Belajar Web</h6>
+            <p class="card-text">
+              <a class="btn btn-primary btn-sm" data-bs-toggle="collapse" href="#artikel1" role="button" aria-expanded="false" aria-controls="artikel1">
+                Baca Artikel
+              </a>
+            </p>
+            <div class="collapse" id="artikel1">
+              <p>
+                Belajar web development bisa dimulai dari dasar HTML untuk membuat struktur halaman,
+                CSS untuk mengatur tampilan, dan JavaScript untuk membuat interaktif.
+                Kunci utama adalah konsistensi belajar dan banyak berlatih dengan membuat
+                proyek kecil seperti halaman profil, blog sederhana, atau galeri foto.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card card-uniform card-article mb-4 h-100"> <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600" class="card-img-top" alt="Artikel 2">
+          <div class="card-body">
+            <h6 class="card-title">Mengenal Bootstrap 5</h6>
+            <p class="card-text">
+              <a class="btn btn-primary btn-sm" data-bs-toggle="collapse" href="#artikel2" role="button" aria-expanded="false" aria-controls="artikel2">
+                Baca Artikel
+              </a>
+            </p>
+            <div class="collapse" id="artikel2">
+              <p>
+                Bootstrap adalah framework CSS populer yang membantu developer membuat website
+                dengan desain responsif lebih cepat. Framework ini menyediakan grid system,
+                komponen siap pakai seperti navbar, card, button, serta utilitas untuk mengatur
+                warna, spasi, hingga typography hanya dengan menambahkan class tertentu.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card card-uniform card-article mb-4 h-100"> <img src="artikel3.jpg" class="card-img-top" alt="Artikel 2">
+          <div class="card-body">
+            <h6 class="card-title">Belajar Responsive Design</h6>
+            <p class="card-text">
+              <a class="btn btn-primary btn-sm" data-bs-toggle="collapse" href="#artikel3" role="button" aria-expanded="false" aria-controls="artikel3">
+                Baca Artikel
+              </a>
+            </p>
+            <div class="collapse" id="artikel3">
+              <p>
+                Responsive design membuat tampilan website menyesuaikan ukuran layar pengguna.
+                Dengan CSS media query atau framework seperti Bootstrap, kita bisa mengatur
+                elemen agar tampil 1 kolom di HP, 2 kolom di tablet, dan 3 kolom di laptop.
+                Tujuannya agar website nyaman diakses siapa saja tanpa harus zoom in atau scroll horizontal.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    </section>
+
+    <section id="hubungisaya">
+         <div class="contact-box">
+             <h2>Hubungi Saya!</h2>
+             <p>Jika ada keperluan, silahkan hubungi saya di</p>
+             <div class="social-buttons">
+                 <a class="whatsapp-button" href="https://wa.me/6281234567890" target="_blank">Whatsapp</a>
+                 <a class="instagram-button" href="https://www.instagram.com/_nunaix?igsh=Y3VuNWI0eHMxaWJ4" target="_blank">Instagram</a>
+                 <a class="tiktok-button" href="https://www.tiktok.com/@xzvfnaa?is_from_webapp=1&sender_device=pc" target="_blank">TikTok</a>
+             </div>
+         </div>
+    </section>
+
+    <footer class="dark bg-dark text-white">
+        <div class="container text-center p-3">
+            <p class="mb-0">Dibuat oleh <b>Ainun Husnul Sadiah</b></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</body>
+</html>
