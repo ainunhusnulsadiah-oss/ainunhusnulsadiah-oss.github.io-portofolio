@@ -291,9 +291,12 @@
              <h2>Hubungi Saya!</h2>
              <p>Jika ada keperluan, silahkan hubungi saya di</p>
              <div class="social-buttons">
-                 <a class="whatsapp-button" href="https://wa.me/085784708395" target="_blank">Whatsapp</a>
-                 <a class="instagram-button" href="https://www.instagram.com/_nunaix?igsh=Y3VuNWI0eHMxaWJ4" target="_blank">Instagram</a>
-                 <a class="tiktok-button" href="https://www.tiktok.com/@xzvfnaa?is_from_webapp=1&sender_device=pc" target="_blank">TikTok</a>
+               <a class="whatsapp-button" href="https://wa.me/085784708395" target="_blank">Whatsapp</a>
+               <a class="instagram-button" href="https://www.instagram.com/_nunaix?igsh=Y3VuNWI0eHMxaWJ4" target="_blank">Instagram</a>
+               <a class="tiktok-button" href="https://www.tiktok.com/@xzvfnaa?is_from_webapp=1&sender_device=pc" target="_blank">TikTok</a>
+             </div>
+             <div class="mt-4 text-center">
+               <button id="downloadBtn" class="btn btn-success">Download CV</button>
              </div>
          </div>
     </section>
@@ -304,7 +307,120 @@
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+
+    <script>
+    // Script untuk tombol download CV — foto di pojok kiri atas, konten sinkron dengan website
+    (function(){
+      const btn = document.getElementById('downloadBtn');
+      if (!btn) return;
+
+      async function toDataUrl(path){
+        try {
+          const res = await fetch(encodeURI(path));
+          if (!res.ok) throw new Error('fetch failed');
+          const blob = await res.blob();
+          return await new Promise((resolve, reject) => {
+            const fr = new FileReader();
+            fr.onload = () => resolve(fr.result);
+            fr.onerror = reject;
+            fr.readAsDataURL(blob);
+          });
+        } catch (e) { return null; }
+      }
+
+      function addSection(doc, title, lines, x, y, maxWidth){
+        doc.setFont('helvetica', 'bold'); doc.setFontSize(13);
+        doc.text(title, x, y);
+        doc.setFont('helvetica', 'normal'); doc.setFontSize(11);
+        let ny = y + 7;
+        lines.forEach(line => {
+          const wrapped = doc.splitTextToSize(line, maxWidth);
+          doc.text(wrapped, x, ny);
+          ny += wrapped.length * 6.8;
+        });
+        return ny + 6;
+      }
+
+      btn.addEventListener('click', async function(){
+        try {
+          if (!window.jspdf || !window.jspdf.jsPDF) throw new Error('jsPDF not loaded');
+          const imgData = await toDataUrl('portofilio copy.png');
+          const { jsPDF } = window.jspdf;
+          const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+          const pw = doc.internal.pageSize.getWidth();
+          const ph = doc.internal.pageSize.getHeight();
+          const margin = 16;
+
+          // Photo top-left
+          const imgW = 44, imgH = 44;
+          if (imgData) {
+            try { doc.addImage(imgData, 'PNG', margin, margin - 2, imgW, imgH); } catch(e){}
+          }
+
+          // Header next to photo
+          const headerX = margin + imgW + 8;
+          doc.setFont('helvetica', 'bold'); doc.setFontSize(18);
+          doc.text('Ainun Husnul Sadiah', headerX, margin + 12);
+          doc.setFont('helvetica', 'normal'); doc.setFontSize(11);
+          doc.text('Siswa — Rekayasa Perangkat Lunak', headerX, margin + 20);
+
+          // thin divider
+          doc.setDrawColor(200);
+          doc.setLineWidth(0.5);
+          doc.line(margin, margin + imgH + 6, pw - margin, margin + imgH + 6);
+
+          // Start content below divider
+          let y = margin + imgH + 14;
+          const contentX = margin;
+          const contentW = pw - margin * 2;
+
+          // Profile
+          y = addSection(doc, 'Profil', [
+            'Saya adalah siswa SMK jurusan Rekayasa Perangkat Lunak (RPL) yang disiplin, teliti, dan bertanggung jawab. Saya siap menerapkan ilmu yang telah dipelajari di sekolah serta belajar hal baru selama PKL.'
+          ], contentX, y, contentW);
+
+          // Pendidikan
+          y = addSection(doc, 'Pendidikan', [
+            'SMK Negeri 8 Jember — Rekayasa Perangkat Lunak (2024 - sekarang)',
+            'SMPN 1 Bangsalsari — (2022 - 2024)'
+          ], contentX, y, contentW);
+
+          // Keahlian
+          y = addSection(doc, 'Keahlian', [
+            'HTML', 'CSS', 'DESAIN UI/UX',
+          ], contentX, y, contentW);
+
+          // Artikel (ambil judul dari halaman)
+          y = addSection(doc, 'Artikel', [
+            'Tips dan Trik Belajar Web',
+            'Mengenal Bootstrap 5',
+            'Belajar Responsive Design'
+          ], contentX, y, contentW);
+
+          // Kontak
+          y = addSection(doc, 'Kontak', [
+            'Whatsapp: 085784708395',
+            'Instagram: _nunaix',
+            'TikTok: @xzvfnaa'
+          ], contentX, y, contentW);
+
+          // Footer
+          doc.setFontSize(9); doc.setTextColor(130);
+          doc.text('Generated from personal website', margin, ph - margin + 6);
+
+          doc.save('CV_Ainun_Husnul_Sadiah_Professional.pdf');
+
+          // mark todo completed
+          try { /* nothing */ } catch(e){}
+        } catch (err) {
+          console.error('PDF generation failed:', err);
+          alert('Gagal membuat PDF. Lihat console (DevTools) untuk detail.');
+        }
+      });
+    })();
+    </script>
 </body>
 </html>
